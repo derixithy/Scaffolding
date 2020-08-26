@@ -1,0 +1,50 @@
+Facade {}
+Singleton {}
+Array {}
+Registry extends Singleton, Array {}
+Table {}
+
+--=================================--
+
+Page extends Table {}
+Settings extends Registry {}
+Template extends Registry, Decor {}
+Route extends Registry
+Domain extends Route
+
+
+
+// index.php
+
+include 'app.php';
+
+App::loadFrom('/user');
+App::loadFrom('/lib');
+
+App:run();
+
+
+// routes.php
+
+Domain::path('site.domain.com', function() {
+	Route::path('/', 'Home');
+});
+
+Route::domain('site.domain.com', function() {
+	Route::path('/', 'Home');
+}
+Route::domain('auth.domain.com', array(
+	'/' => 'AuthHome',
+	'/login' => 'AuthLogin',
+	'/logout' => 'AuthLogout'
+))
+
+
+// Home.php
+namespace Controler;
+
+Class Home {
+	map() {
+		Template::....
+	}
+} 
